@@ -38,7 +38,7 @@ describe("Account card", () => {
     fireEvent.click(trigger);
     const menu = screen.getByRole("menu");
     expect(menu.className).not.toContain("shadow-glow");
-    expect(menu.className).not.toContain("surface");
+    expect(menu.className.split(" ")).not.toContain("surface"); // panel utility carries the lifting shadow
     for (const item of screen.getAllByRole("menuitem")) {
       expect(item.className).not.toMatch(/hover:bg-surface/);
     }
