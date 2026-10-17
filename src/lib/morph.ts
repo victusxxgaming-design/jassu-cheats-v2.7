@@ -10,7 +10,6 @@ let running = false;
 export function morphToPage(origin: HTMLElement, title: string, go: () => void, subtitle = "Opening category"): void {
   if (curtain || running) return; // a morph is already running
   if (typeof window === "undefined") { go(); return; }
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { go(); return; }
 
   running = true;
   const r = origin.getBoundingClientRect();

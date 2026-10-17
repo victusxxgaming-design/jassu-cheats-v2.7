@@ -30,7 +30,6 @@ export function SiteMotion({ children }: { children: ReactNode }) {
       const href = url.pathname + url.search + url.hash;
       if (href === window.location.pathname + window.location.search + window.location.hash) return;
       if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       event.preventDefault();
       const origin = (link.closest("[role='menuitem']") as HTMLElement | null) ?? link;
       morphToPage(origin, morphLabel(morphTitle(link, url)), () => { void router.navigate({ href }); }, "Loading");
@@ -45,13 +44,12 @@ export function SiteMotion({ children }: { children: ReactNode }) {
   useEffect(() => {
     const el = root.current;
     if (!el) return;
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const seen = new WeakSet<Element>();
     const animations = new Set<Animation>();
     let observer: IntersectionObserver | undefined;
     let mutations: MutationObserver | undefined;
     const animate = (target: Element, delay = 0) => {
-      if (preference.matches || typeof target.animate !== "function") return;
+      if (typeof target.animate !== "function") return;
       const animation = target.animate(
         [{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "translateY(0)" }],
         { duration: 420, delay, easing: "cubic-bezier(.22,1,.36,1)" },
@@ -75,7 +73,7 @@ export function SiteMotion({ children }: { children: ReactNode }) {
     };
     const start = () => {
       stop();
-      if (preference.matches || typeof IntersectionObserver === "undefined") return;
+      if (typeof IntersectionObserver === "undefined") return;
       observer = new IntersectionObserver((entries) => {
         let stagger = 0;
         entries.forEach((entry) => {
@@ -89,8 +87,7 @@ export function SiteMotion({ children }: { children: ReactNode }) {
       mutations.observe(el, { childList: true, subtree: true });
     };
     start();
-    preference.addEventListener("change", start);
-    return () => { stop(); preference.removeEventListener("change", start); };
+    return stop;
   }, [location]);
   return (
     <div ref={root} className="site-motion">
