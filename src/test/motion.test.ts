@@ -12,7 +12,7 @@ it("animates category navigation even when the device requests reduced motion", 
   vi.useFakeTimers();
   vi.stubGlobal("matchMedia", vi.fn(() => ({ matches: true })));
   const animations: Array<{ onfinish: (() => void) | null }> = [];
-  const animate = vi.fn(function () {
+  const animate = vi.fn(function (_frames: Keyframe[], _options: KeyframeAnimationOptions) {
     const animation = { onfinish: null as (() => void) | null };
     animations.push(animation);
     return animation;
