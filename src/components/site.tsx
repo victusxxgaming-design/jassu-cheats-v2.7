@@ -156,7 +156,7 @@ export function Shell({ children }: { children: ReactNode }) {
 export function MorphReveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (consumeMorph(140) && ref.current && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (consumeMorph(140) && ref.current) {
       ref.current.animate(
         [{ opacity: 0.45, transform: "translateY(16px) scale(0.99)" }, { opacity: 1, transform: "none" }],
         { duration: 480, easing: "cubic-bezier(0.22, 0.9, 0.26, 1)" },
@@ -172,7 +172,6 @@ export function Reveal({ children, className, delay = 0 }: { children: ReactNode
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { setShown(true); return; }
     if (typeof IntersectionObserver === "undefined") { setShown(true); return; }
     const io = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) { setShown(true); io.disconnect(); }
@@ -182,7 +181,7 @@ export function Reveal({ children, className, delay = 0 }: { children: ReactNode
   }, []);
   return (
     <div ref={ref} style={{ transitionDelay: `${delay}ms` }}
-      className={cn("transition-all duration-700 ease-out motion-reduce:transition-none",
+      className={cn("transition-all duration-700 ease-out",
         shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0", className)}>
       {children}
     </div>
