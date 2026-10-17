@@ -5,4 +5,4 @@
 
 # Always-on animation
 - [x] Remove device Reduce Motion suppression from shared effects and category morphs.
-- [ ] Test animations and navigation with device Reduce Motion enabled.
+- [x] Test animations and navigation with device Reduce Motion enabled.
