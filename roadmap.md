@@ -6,3 +6,7 @@
 # Always-on animation
 - [x] Remove device Reduce Motion suppression from shared effects and category morphs.
 - [x] Test animations and navigation with device Reduce Motion enabled.
+
+# Docked account card
+- [x] Remove hover paint, blur and glow so the card reads as fixed chrome.
+- [x] Keep menu items from sliding while other site links still do.
