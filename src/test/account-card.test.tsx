@@ -32,7 +32,7 @@ describe("Account card", () => {
     expect(cls).not.toMatch(/hover:/);
     expect(cls).not.toContain("backdrop-blur");
     expect(cls).not.toContain("shadow-glow");
-    expect(cls).not.toContain("ring-1");
+    expect(cls).not.toMatch(/(^|\s)ring-/); // keyboard focus ring only
     expect(cls).toContain("bg-surface");
 
     fireEvent.click(trigger);
