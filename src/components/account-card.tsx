@@ -38,9 +38,9 @@ export function AccountCard() {
   };
 
   return (
-    <div ref={rootRef} className="fixed bottom-4 left-4 z-50 print:hidden">
+    <div ref={rootRef} className="account-card fixed bottom-4 left-4 z-50 print:hidden">
       {open && (
-        <div className="surface mb-2 w-64 rounded-xl border p-2 shadow-glow" role="menu">
+        <div className="w-64 rounded-lg border border-border/70 bg-surface p-1.5" role="menu">
           <div className="flex items-center gap-3 rounded-lg px-2 py-2">
             <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-primary font-display text-sm font-bold text-primary-foreground">{initial}</span>
             <span className="min-w-0">
@@ -49,19 +49,19 @@ export function AccountCard() {
             </span>
           </div>
           <div className="my-1 border-t" />
-          <button onClick={() => go("/account")} className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm hover:bg-surface" role="menuitem">
+          <button onClick={() => go("/account")} className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm hover:bg-muted" role="menuitem">
             <User className="h-4 w-4 text-muted-foreground" /> My account
           </button>
-          <button onClick={() => go("/cart")} className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm hover:bg-surface" role="menuitem">
+          <button onClick={() => go("/cart")} className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm hover:bg-muted" role="menuitem">
             <ShoppingBag className="h-4 w-4 text-muted-foreground" /> Cart
           </button>
-          <button onClick={() => go("/account")} className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm hover:bg-surface" role="menuitem">
+          <button onClick={() => go("/account")} className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm hover:bg-muted" role="menuitem">
             <Wallet className="h-4 w-4 text-muted-foreground" /> My orders & keys
           </button>
           <div className="my-1 border-t" />
           <button
             onClick={() => { setOpen(false); void signOut(); }}
-            className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-destructive hover:bg-surface"
+            className="flex w-full items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm text-destructive hover:bg-muted"
             role="menuitem"
           >
             <LogOut className="h-4 w-4" /> Sign out
@@ -73,8 +73,8 @@ export function AccountCard() {
         aria-expanded={open}
         aria-label="Account options"
         className={cn(
-          "flex w-64 max-w-[calc(100vw-2rem)] items-center gap-3 rounded-xl border bg-background/90 px-3 py-2 backdrop-blur-xl transition-colors hover:bg-surface",
-          open && "ring-1 ring-ring",
+          "flex w-64 max-w-[calc(100vw-2rem)] items-center gap-3 rounded-lg border border-border/70 bg-surface px-3 py-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+          open && "border-border",
         )}
       >
         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-primary font-display text-sm font-bold text-primary-foreground">{initial}</span>

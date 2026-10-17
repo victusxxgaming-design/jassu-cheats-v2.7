@@ -179,6 +179,9 @@
 .site-motion [role="tabpanel"][hidden] { animation: none; }
 .site-motion :is([role="menuitem"], footer a):hover { transform: translateX(3px); }
 .site-motion .surface { transition: border-color var(--motion-standard), box-shadow var(--motion-standard), transform var(--motion-standard) var(--motion-ease); }
+/* The docked account card stays put: no slide, no lift, no glow. */
+.site-motion .account-card, .site-motion .account-card .surface { transition: none; }
+.site-motion .account-card :is([role="menuitem"]):hover { transform: none; }
 @media (hover: hover) {
   .site-motion .motion-control:hover:not(:disabled) { transform: translateY(-2px); }
   .site-motion header nav a:hover { transform: translateY(-2px); }
